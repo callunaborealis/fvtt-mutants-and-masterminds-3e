@@ -1,0 +1,14 @@
+{
+  "eslint.codeAction.showDocumentation": {
+    "enable": true
+  },
+  "eslint.validate": ["typescript"],
+  "editor.formatOnSave": true,
+  "eslint.format.enable": true,
+  "files.associations": {
+    "*.html": "handlebars"
+  },
+  "prettier.enable": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.validate.enable": true
+}

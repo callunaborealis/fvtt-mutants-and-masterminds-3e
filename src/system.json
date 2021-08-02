@@ -1,0 +1,40 @@
+{
+  "name": "fvtt-mutants-and-masterminds-3e",
+  "title": "Simple Worldbuilding",
+  "description": "Unofficial game system for Simple Worldbuilding System For Foundry VTTRPG",
+  "version": "0.1.0",
+  "templateVersion": 2,
+  "minimumCoreVersion": "0.8.8",
+  "compatibleCoreVersion": "0.8.8",
+  "author": "callunaborealis",
+  "esmodules": ["scripts/system.js"],
+  "styles": ["system.css"],
+  "packs": [
+    {
+      "name": "monsters",
+      "label": "My Monsters",
+      "path": "packs/monsters.db",
+      "entity": "Actor"
+    },
+    {
+      "name": "items",
+      "label": "My Items",
+      "path": "packs/items.db",
+      "entity": "Item"
+    }
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "socket": false,
+  "initiative": "1d20",
+  "gridDistance": 10,
+  "gridUnits": "ft",
+  "url": "https://github.com/callunaborealis/fvtt-mutants-and-masterminds-3e",
+  "manifest": "https://github.com/callunaborealis/fvtt-mutants-and-masterminds-3e/releases/latest/download/system.json",
+  "download": "https://github.com/callunaborealis/fvtt-mutants-and-masterminds-3e/releases/latest/download/system.zip"
+}

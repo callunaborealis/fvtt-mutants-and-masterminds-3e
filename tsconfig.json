@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "esModuleInterop": true,
+    "isolatedModules": false,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "outDir": "./build",
+    "strictNullChecks": true,
+    "target": "es5",
+    "types": ["@league-of-foundry-developers/foundry-vtt-types"]
+  },
+  "include": ["./src/**/*"]
+}
