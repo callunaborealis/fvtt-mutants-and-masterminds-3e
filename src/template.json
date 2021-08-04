@@ -1,4 +1,12 @@
 {
   "Actor": {},
-  "Item": {}
+  "Item": {
+    "types": [],
+    "templates": {
+      "weapon": {
+        "cost": 0,
+        "critical": 0
+      }
+    }
+  }
 }

@@ -1,6 +1,6 @@
 {
   "name": "fvtt-mutants-and-masterminds-3e",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Unofficial Foundry VTTRPG game system for Mutants and Masterminds (3e)",
   "main": "src/scripts/system.ts",
   "scripts": {
