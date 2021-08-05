@@ -1,7 +1,7 @@
 {
   "name": "fvtt-mutants-and-masterminds-3e",
-  "title": "Simple Worldbuilding",
-  "description": "Unofficial game system for Simple Worldbuilding System For Foundry VTTRPG",
+  "title": "Mutants and Masterminds",
+  "description": "Unofficial Foundry VTTRPG game system for Mutants and Masterminds (3e)",
   "version": "0.1.0",
   "templateVersion": 2,
   "minimumCoreVersion": "0.8.8",
