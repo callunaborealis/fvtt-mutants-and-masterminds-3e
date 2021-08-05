@@ -37,10 +37,10 @@ Hooks.once("init", function () {
   (CONFIG as OwnCONFIG).Item.documentClass = OwnItem;
 
   // Register sheet application classes
-  Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("own", OwnActorSheet, {
-    makeDefault: true,
-  });
+  // Actors.unregisterSheet("core", ActorSheet);
+  // Actors.registerSheet("own", OwnActorSheet, {
+  //   makeDefault: true,
+  // });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("own", OwnItemSheet, {
     makeDefault: true,
