@@ -1,12 +1,33 @@
 {
   "Actor": {},
   "Item": {
-    "types": [],
+    "types": ["weapon"],
     "templates": {
-      "weapon": {
-        "cost": 0,
-        "critical": 0
+      "item": {
+        "cost": 1
       }
+    },
+    "weapon": {
+      "templates": ["item"],
+      "type": "weapon",
+      "advantages": [],
+      "category": "SimpleArchaic",
+      "classes": {},
+      "critical": {
+        "min": 0,
+        "max": 0
+      },
+      "effect": [
+        {
+          "category": "Damage",
+          "attributes": {
+            "abilityUsed": "Str",
+            "type": "Bludgeoning",
+            "value": 1
+          }
+        }
+      ],
+      "reach": 1
     }
   }
 }

@@ -34,6 +34,9 @@ export class OwnActor extends Actor {
 
     // Make separate methods for each Actor type (character, npc, etc.) to keep
     // things organized.
+    // We've named them with an underscore as a prefix, we're also signifying
+    // to any modules that extend our system that these methods are internal
+    // and generally shouldn't be overridden.
     // this._prepareCharacterData(actorData);
     // this._prepareNpcData(actorData);
   }
