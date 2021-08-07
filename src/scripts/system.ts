@@ -6,7 +6,10 @@ import { OwnActorSheet } from "../sheets/actor-sheet";
 import { OwnItemSheet } from "../sheets/item-sheet";
 // Import helper/utility classes and constants.
 import { CONFIG_OWN } from "../helpers/config";
-import { preloadHandlebarsTemplates } from "../helpers/templates";
+import {
+  handlebarsHelperArgs,
+  preloadHandlebarsTemplates,
+} from "../helpers/templates";
 
 // Types
 import type { OwnGame, OwnCONFIG } from "./types";
@@ -44,6 +47,14 @@ Hooks.once("init", function () {
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("own", OwnItemSheet, {
     makeDefault: true,
+  });
+
+  // Define custom Handlebars helpers
+  handlebarsHelperArgs.forEach((handlebarHelperArgPair) => {
+    Handlebars.registerHelper(
+      handlebarHelperArgPair.name,
+      handlebarHelperArgPair.fn,
+    );
   });
 
   // Preload Handlebars templates.
