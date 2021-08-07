@@ -1,6 +1,6 @@
 {
   "name": "fvtt-mutants-and-masterminds-3e",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Unofficial Foundry VTTRPG game system for Mutants and Masterminds (3e)",
   "main": "src/scripts/system.ts",
   "scripts": {
@@ -23,10 +23,12 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.4",
     "@rollup/plugin-typescript": "^8.2.3",
+    "@types/lodash-es": "^4.17.4",
     "@typescript-eslint/eslint-plugin": "^4.28.4",
     "@typescript-eslint/parser": "^4.28.4",
     "autoprefixer": "^9.8.6",
     "eslint": "^7.31.0",
+    "lodash-es": "^4.17.21",
     "postcss": "^8.3.6",
     "prettier": "2.3.2",
     "rollup": "^2.53.3",

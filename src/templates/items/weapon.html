@@ -1,0 +1,114 @@
+<form class="{{cssClass}}" autocomplete="off" data-item-type="{{"lodash.get" "item.type"}}">
+  <header class="{{"lodash.get" "data.data.classes.header"}}">
+    <div class="{{"lodash.get" "data.data.classes.headerTop"}}">
+      <img
+        src="{{item.img}}"
+        data-edit="img"
+        title="{{item.img}}"
+        height="64"
+        width="64"
+      />
+      <h1>
+        <input
+          name="name"
+          type="text"
+          value="{{item.name}}"
+          placeholder="Name"
+        />
+      </h1>
+    </div>
+    <table class="{{"lodash.get" "data.data.classes.attributes"}}">
+      <tbody>
+        <tr>
+          <td>Critical</td>
+          <td>
+            <input
+              name="data.critical.min"
+              type="number"
+              value="{{"lodash.get" "item.data.data.critical.min"}}"
+              placeholder="Critical: Min"
+            />
+            <input
+              name="data.critical.max"
+              type="number"
+              value="{{"lodash.get" "item.data.data.critical.max"}}"
+              placeholder="Critical: Max"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Cost</td>
+          <td>
+            <input
+              name="data.cost"
+              type="number"
+              value="{{"lodash.get" "item.data.data.cost"}}"
+              placeholder="Cost"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </header>
+  <nav class="{{"lodash.get" "data.data.classes.tabs"}}">
+    <a
+      class="{{"lodash.get" "data.data.classes.tab"}}"
+      data-tab="description"
+      data-selected="true"
+      >Description</a
+    >
+    <a class="{{"lodash.get" "data.data.classes.tab"}}" data-tab="details" data-selected="false"
+      >Details</a
+    >
+    <a class="{{"lodash.get" "data.data.classes.tab"}}" data-tab="effects" data-selected="false"
+      >Effects</a
+    >
+  </nav>
+  <div
+    class="{{"lodash.get" "data.data.classes.tabContent"}}"
+    data-tab="description"
+    data-selected="true"
+  >
+    Flavor text here
+  </div>
+  <div
+    class="{{"lodash.get" "data.data.classes.tabContent"}}"
+    data-tab="details"
+    data-selected="false"
+  >
+    Details
+  </div>
+  <div
+    class="{{"lodash.get" "data.data.classes.tabContent"}}"
+    data-tab="effects"
+    data-selected="false"
+  >
+    <table>
+      <thead>
+        Effects
+      </thead>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Ability Used</th>
+          <th>Type</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{"lodash.get" "item.data.data.effects.0.category"}}</td>
+          <td>
+            {{"lodash.get" "item.data.data.effects.0.attributes.abilityUsed"}}
+          </td>
+          <td>
+            {{"lodash.get" "item.data.data.effects[0].attributes.type"}}
+          </td>
+          <td>
+            {{"lodash.get" "item.data.data.effects['0'].attributes.value"}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</form>

@@ -7,7 +7,10 @@ rm -rf $script_dir/../dist &&
   # Ensure template.json is inside the system.zip source
   cp $script_dir/../src/template.json $script_dir/../build/template.json &&
   # Ensure non TS and SCSS files inside the build
+  cp -vr $script_dir/../src/assets $script_dir/../build/assets &&
   cp -vr $script_dir/../src/lang $script_dir/../build/lang &&
+  # mkdir $script_dir/../build/styles &&
+  mv $script_dir/../build/system.css $script_dir/../build/styles/system.css &&
   cp -vr $script_dir/../src/templates $script_dir/../build/templates &&
   cd $script_dir/../build &&
   zip -vr ../dist/system.zip . -x ".DS_Store"

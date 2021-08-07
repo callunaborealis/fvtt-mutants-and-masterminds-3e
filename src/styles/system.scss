@@ -1,3 +1,12 @@
-.hello {
-  display: none;
+@import "./fonts.scss";
+
+/* @override */
+:global {
+  .window-content::-webkit-scrollbar {
+    display: none;
+  }
+  .window-content {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }

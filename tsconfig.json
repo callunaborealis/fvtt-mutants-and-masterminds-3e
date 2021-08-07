@@ -8,7 +8,7 @@
     "resolveJsonModule": true,
     "outDir": "./build",
     "strictNullChecks": true,
-    "target": "es5",
+    "target": "ESNext",
     "types": ["@league-of-foundry-developers/foundry-vtt-types"]
   },
   "include": ["./src/**/*"]
