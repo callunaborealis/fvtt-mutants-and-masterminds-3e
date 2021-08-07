@@ -1,10 +1,12 @@
-@font-face {
-  font-family: "NewsflashBB";
-  font-style: normal;
-  font-weight: 500;
-  src: url("../assets/NewsflashBB.ttf") format("ttf");
-}
+@import "./fonts.scss";
 
-.hello {
-  display: none;
+/* @override */
+:global {
+  .window-content::-webkit-scrollbar {
+    display: none;
+  }
+  .window-content {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }

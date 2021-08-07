@@ -1,0 +1,105 @@
+@import "../../system.scss";
+
+.item-sheet {
+  background-color: rgb(232, 236, 235);
+  min-height: 400px;
+  min-width: 400px;
+  margin: -8px;
+
+  /* Variables */
+  --white: rgb(251, 251, 251);
+  --dark-green: rgb(159, 178, 169);
+  --darker-green: rgb(72, 104, 88);
+  --light-green: rgb(235, 240, 238);
+}
+
+.item-sheet table {
+  width: unset;
+  border-collapse: collapse;
+  background: var(--white);
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  margin: 0.5em 0;
+}
+
+.item-sheet table thead {
+  background: var(--dark-green);
+  color: black;
+  text-shadow: none;
+  border-top: 3px solid var(--darker-green);
+  border-bottom: 1px solid var(--dark-green);
+  text-align: left;
+}
+
+.item-sheet table thead th,
+.item-sheet table tbody td {
+  padding-left: 5px;
+}
+
+.item-sheet table tr:nth-child(2n) {
+  background-color: var(--light-green);
+}
+
+.item-sheet__header {
+  padding: 10px;
+}
+
+.item-sheet__header-top {
+  align-items: center;
+  border-radius: 5px;
+  display: flex;
+  font-family: "Teko";
+  width: 100%;
+}
+
+.item-sheet__header-top h1 {
+  border-bottom: none;
+  margin-left: 10px;
+}
+
+.item-sheet table.item-sheet__attributes {
+  width: 200px;
+}
+
+.item-sheet__tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.item-sheet__tab {
+  font-size: 13px;
+  text-align: left;
+  height: 26px;
+  padding: 5px 1rem 0 1rem;
+  flex: 1 1 auto;
+}
+
+.item-sheet__tab:hover {
+  text-shadow: none;
+}
+
+.item-sheet__tab[data-selected="false"] {
+  background: rgba(159, 178, 169, 0.4);
+  border-bottom: solid 2px rgb(159, 178, 169);
+  max-width: calc(100% / 3);
+}
+
+.item-sheet__tab[data-selected="true"] {
+  background: transparent;
+  border-top: solid 2px rgb(159, 178, 169);
+  border-left: solid 2px rgb(159, 178, 169);
+  border-right: solid 2px rgb(159, 178, 169);
+  font-weight: 700;
+}
+
+.item-sheet__tab-content {
+  padding: 10px;
+}
+
+.item-sheet__tab-content[data-selected="false"] {
+  display: none;
+}
