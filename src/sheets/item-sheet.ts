@@ -49,32 +49,31 @@ export class OwnItemSheet extends ItemSheet {
   activateListeners(html: JQuery) {
     super.activateListeners(html);
 
-    const tabs = html[0].querySelectorAll(
+    type ItemSheetTab = HTMLElement & {
+      dataset: {
+        selected: "true" | "false";
+        tab: "description" | "details" | "effects";
+      };
+    };
+
+    const tabs = html[0].querySelectorAll<ItemSheetTab>(
       `.${styles["item-sheet__tab"]}[data-tab][data-selected]`,
     );
 
     // Set up tab toggling
     tabs.forEach((tab) => {
       tab.addEventListener("click", (e) => {
-        const tabType = (e.target as HTMLElement)?.dataset?.tab;
-        const toggleableAreas = html[0].querySelectorAll(
+        const tabType = (e.target as ItemSheetTab).dataset.tab;
+        const toggleableAreas = html[0].querySelectorAll<ItemSheetTab>(
           `.${styles["item-sheet__tab-content"]}[data-tab][data-selected]`,
         );
         toggleableAreas.forEach((toggleableArea) => {
-          (
-            (toggleableArea as HTMLElement).dataset as { selected: string }
-          ).selected =
-            ((toggleableArea as HTMLElement).dataset as { tab: string }).tab ===
-            tabType
-              ? "true"
-              : "false";
+          toggleableArea.dataset.selected =
+            toggleableArea.dataset.tab === tabType ? "true" : "false";
         });
         // Switch active tab presentation
         tabs.forEach((tab) => {
-          ((tab as HTMLElement).dataset as { selected: string }).selected =
-            ((tab as HTMLElement).dataset as { tab: string }).tab === tabType
-              ? "true"
-              : "false";
+          tab.dataset.selected = tab.dataset.tab === tabType ? "true" : "false";
         });
       });
     });

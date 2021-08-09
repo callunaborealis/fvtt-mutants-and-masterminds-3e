@@ -75,10 +75,6 @@ interface WeaponAttributes {
    */
   category: WeaponCategory;
   /**
-   * Item sheet related CSS class assignment
-   */
-  classes: Record<string, string>;
-  /**
    * The threat range for a critical hit with the weapon.
    * Some weapons have a larger threat range than others.
    * Increasing a weapon’s threat range by 1 costs 1 point, like
