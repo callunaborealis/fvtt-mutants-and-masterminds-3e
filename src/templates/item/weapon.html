@@ -1,6 +1,6 @@
 <form class="{{cssClass}}" autocomplete="off" data-item-type="{{"lodash.get" "item.type"}}">
-  <header class="{{"lodash.get" "data.data.classes.header"}}">
-    <div class="{{"lodash.get" "data.data.classes.headerTop"}}">
+  <header class="{{lodash.get "data.data.classes.header"}}">
+    <div class="{{lodash/get "data.data.classes.headerTop"}}">
       <img
         src="{{item.img}}"
         data-edit="img"
@@ -55,14 +55,15 @@
       class="{{"lodash.get" "data.data.classes.tab"}}"
       data-tab="description"
       data-selected="true"
-      >Description</a
     >
-    <a class="{{"lodash.get" "data.data.classes.tab"}}" data-tab="details" data-selected="false"
-      >Details</a
-    >
-    <a class="{{"lodash.get" "data.data.classes.tab"}}" data-tab="effects" data-selected="false"
-      >Effects</a
-    >
+      Description
+    </a>
+    <a class="{{"lodash.get" "data.data.classes.tab"}}" data-tab="details" data-selected="false">
+      Details
+    </a>
+    <a class="{{"lodash.get" "data.data.classes.tab"}}" data-tab="effects" data-selected="false">
+      Effects
+    </a>
   </nav>
   <div
     class="{{"lodash.get" "data.data.classes.tabContent"}}"
@@ -76,7 +77,42 @@
     data-tab="details"
     data-selected="false"
   >
-    Details
+    <table class="item-sheet__details-form">
+      <tbody>
+        <tr>
+          <td class="item-sheet__details-form__label">Critical</td>
+          <td>
+            <div class="item-sheet__details-range-field--critical">
+              <input
+                name="data.critical.min"
+                type="number"
+                value="{{"lodash.get" "item.data.data.critical.min"}}"
+                placeholder="Critical: Min"
+              />
+              <input
+                name="data.critical.min"
+                type="number"
+                value="{{"lodash.get" "item.data.data.critical.max"}}"
+                placeholder="Critical: Min"
+              />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Cost</td>
+          <td>
+            <div class="item-sheet__details-range-field--cost">
+              <input
+                name="data.critical.cost"
+                type="number"
+                value="{{"lodash.get" "item.data.data.cost"}}"
+                placeholder="Cost"
+                />
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <div
     class="{{"lodash.get" "data.data.classes.tabContent"}}"
@@ -85,7 +121,7 @@
   >
     <table>
       <thead>
-        Effects
+        Temporary Effects
       </thead>
       <thead>
         <tr>
@@ -97,17 +133,47 @@
       </thead>
       <tbody>
         <tr>
-          <td>{{"lodash.get" "item.data.data.effects.0.category"}}</td>
+          <td>Damage</td>
           <td>
-            {{"lodash.get" "item.data.data.effects.0.attributes.abilityUsed"}}
+            STR
           </td>
           <td>
-            {{"lodash.get" "item.data.data.effects[0].attributes.type"}}
+            Bludgeoning
           </td>
           <td>
-            {{"lodash.get" "item.data.data.effects['0'].attributes.value"}}
+            4
           </td>
         </tr>
+      </tbody>
+    </table>
+    <table>
+      <thead>
+        Passive Effects
+      </thead>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Ability Used</th>
+          <th>Type</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <table>
+      <thead>
+        Inactive Effects
+      </thead>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Ability Used</th>
+          <th>Type</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
       </tbody>
     </table>
   </div>

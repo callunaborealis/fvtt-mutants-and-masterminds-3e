@@ -1,4 +1,4 @@
-import { REPO_NAME } from "../constants";
+import { templateDirectory } from "../helpers/templates";
 
 import styles from "../styles/templates/item/weapon.scss";
 
@@ -8,7 +8,7 @@ import styles from "../styles/templates/item/weapon.scss";
  */
 export class OwnItemSheet extends ItemSheet {
   get template() {
-    return `systems/${REPO_NAME}/templates/items/weapon.html`;
+    return templateDirectory.item.weapon;
   }
 
   /** @override */

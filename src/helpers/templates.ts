@@ -2,6 +2,12 @@ import { get } from "lodash-es";
 
 import { REPO_NAME } from "../constants";
 
+const templateDirectory = {
+  item: {
+    weapon: `systems/${REPO_NAME}/templates/item/weapon.html`,
+  },
+};
+
 /**
  * Define a set of template paths to pre-load
  * Pre-loaded templates are compiled and cached for fast access when rendering
@@ -11,7 +17,7 @@ const preloadHandlebarsTemplates = async (): Promise<
 > => {
   return loadTemplates([
     // Item Sheet Partials
-    `systems/${REPO_NAME}/templates/items/weapon.html`,
+    ...Object.values(templateDirectory.item),
   ]);
 };
 
