@@ -1,0 +1,307 @@
+<form
+  class="{{cssClass}}"
+  autocomplete="off"
+  data-item-type="{{item.type}}"
+>
+  <header class="{{lodash_get "data.data.classes.header"}}">
+    <div class="{{lodash_get "data.data.classes.headerTop"}}">
+      <img
+        src="{{item.img}}"
+        data-edit="img"
+        title="{{item.img}}"
+        height="64"
+        width="64"
+      />
+      <h1>
+        <input
+          name="name"
+          type="text"
+          value="{{item.name}}"
+          placeholder="Name"
+        />
+      </h1>
+    </div>
+    <table class="{{lodash_get "data.data.classes.attributes"}}">
+      <tbody>
+        <tr>
+          <td>
+            Source
+          </td>
+          <td>
+            <div
+              class="{{lodash_get "data.data.classes.attributesSourceText"}}"
+            >
+              <input
+                name="data.source.text"
+                type="text"
+                placeholder="Name of source (Optional)"
+                value="{{lodash_get "item.data.data.source.text"}}"
+              />
+            </div>
+            <div
+              class="{{lodash_get "data.data.classes.attributesSourceLink"}}"
+            >
+              <input
+                name="data.source.link"
+                type="text"
+                placeholder="Link to source (Optional)"
+                value="{{lodash_get "item.data.data.source.link"}}"
+              />
+              <a
+                href="{{lodash_get "item.data.data.source.link"}}"
+                rel="noreferrer noopener"
+                target="_blank"
+              >
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </header>
+  <input
+    type="hidden"
+    name="data.sheet.selectedTab"
+    value="{{lodash_get "item.data.data.sheet.selectedTab"}}"
+  />
+  <nav class="{{lodash_get "data.data.classes.tabs"}}">
+    <a
+      class="{{lodash_get "data.data.classes.tab"}}"
+      data-tab="description"
+      data-selected={{eq
+        (lodash_get "item.data.data.sheet.selectedTab")
+        "description"
+      }}
+    >
+      Description
+    </a>
+    <a
+      class="{{lodash_get "data.data.classes.tab"}}"
+      data-tab="details"
+      data-selected="{{eq
+          (lodash_get "item.data.data.sheet.selectedTab")
+          "details"
+        }}"
+    >
+      Details
+    </a>
+    <a
+      class="{{lodash_get "data.data.classes.tab"}}"
+      data-tab="effects"
+      data-selected="{{eq
+          (lodash_get "item.data.data.sheet.selectedTab")
+          "effects"
+        }}"
+    >
+      Effects
+    </a>
+  </nav>
+  <div
+    class="{{lodash_get "data.data.classes.tabContent"}}"
+    data-tab="description"
+    data-selected="{{eq
+      (lodash_get "item.data.data.sheet.selectedTab")
+      "description"
+    }}"
+  >
+    <div class="{{lodash_get "data.data.classes.description"}}">
+      {{editor
+        content=(lodash_get "item.data.data.description")
+        target="data.description"
+        button=true
+        owner=owner
+        editable=editable
+        rollData=rollData
+      }}
+    </div>
+  </div>
+  <div
+    class="{{lodash_get "data.data.classes.tabContent"}}"
+    data-tab="details"
+    data-selected="{{eq
+      (lodash_get "item.data.data.sheet.selectedTab")
+      "details"
+    }}"
+  >
+    <table class="{{lodash_get "data.data.classes.detailsForm"}}">
+      <tbody>
+        <tr>
+          <td class="{{lodash_get "data.data.classes.detailsFormLabel"}}">
+            {{localize "OWN.item.weapon.category.label"}}
+          </td>
+          <td>
+            <input
+              type="hidden"
+              value="{{lodash_get "item.data.data.category"}}"
+            />
+            <select name="data.category">
+              {{#select (lodash_get "item.data.data.category")}}
+                {{#each
+                  (own_getConst
+                    "item.weapon.category.list"
+                  ) as |category position|
+                }}
+                  <option value="{{category}}">
+                    {{localize
+                      (own_getConst
+                        (own_replace
+                          "item.weapon.category.indexedLabels.{category}"
+                          "{category}"
+                          category
+                        )
+                      )
+                    }}
+                  </option>
+                {{/each}}
+              {{/select}}
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="{{lodash_get "data.data.classes.detailsFormLabel"}}">
+            Critical
+          </td>
+          <td>
+            <div
+              class="{{lodash_get "data.data.classes.detailsFormRangeField"}}"
+            >
+              <input
+                name="data.critical.min"
+                type="number"
+                value="{{lodash_get "item.data.data.critical.min"}}"
+                placeholder="Min"
+              />
+              <input
+                name="data.critical.max"
+                type="number"
+                value="{{lodash_get "item.data.data.critical.max"}}"
+                placeholder="Max"
+              />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="{{lodash_get "data.data.classes.detailsFormLabel"}}">
+            Cost
+          </td>
+          <td>
+            <div class="{{lodash_get "data.data.classes.detailsFormNumField"}}">
+              <input
+                name="data.cost"
+                type="number"
+                value="{{lodash_get "item.data.data.cost"}}"
+                placeholder="Cost"
+              />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="{{lodash_get "data.data.classes.detailsFormLabel"}}">
+            Reach
+          </td>
+          <td>
+            <div class="{{lodash_get "data.data.classes.detailsFormNumField"}}">
+              <input
+                name="data.reach"
+                type="number"
+                value="{{lodash_get "item.data.data.reach"}}"
+                placeholder="Reach"
+              />
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="{{lodash_get "data.data.classes.tabContent"}}"
+    data-tab="effects"
+    data-selected="{{eq
+        (lodash_get "item.data.data.sheet.selectedTab")
+        "effects"
+      }}"
+  >
+    <table>
+      <thead>
+        Temporary Effects
+      </thead>
+      <thead>
+        <tr>
+          <th>
+            Category
+          </th>
+          <th>
+            Ability Used
+          </th>
+          <th>
+            Type
+          </th>
+          <th>
+            Value
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Damage
+          </td>
+          <td>
+            STR
+          </td>
+          <td>
+            Bludgeoning
+          </td>
+          <td>
+            4
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table>
+      <thead>
+        Passive Effects
+      </thead>
+      <thead>
+        <tr>
+          <th>
+            Category
+          </th>
+          <th>
+            Ability Used
+          </th>
+          <th>
+            Type
+          </th>
+          <th>
+            Value
+          </th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <table>
+      <thead>
+        Inactive Effects
+      </thead>
+      <thead>
+        <tr>
+          <th>
+            Category
+          </th>
+          <th>
+            Ability Used
+          </th>
+          <th>
+            Type
+          </th>
+          <th>
+            Value
+          </th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</form>

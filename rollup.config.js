@@ -18,7 +18,7 @@ export default {
     postcss({
       extract: true,
       modules: {
-        generateScopedName: "mm3e__[name]__[local]--[hash:base64:5]",
+        generateScopedName: "mm3e__[folder]__[name]__[local]--[hash:base64:5]",
       },
       minimize: true,
       plugins: [autoprefixer()],

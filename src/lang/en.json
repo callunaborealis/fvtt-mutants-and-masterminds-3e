@@ -1,1 +1,11 @@
-{}
+{
+  "OWN.item.weapon.category.label": "Category",
+  "OWN.item.weapon.category.option.MeleeSimple": "Melee: Simple",
+  "OWN.item.weapon.category.option.MeleeArchaic": "Melee: Archaic",
+  "OWN.item.weapon.category.option.MeleeExotic": "Melee: Exotic",
+  "OWN.item.weapon.category.option.RangedProjectile": "Ranged: Projectile",
+  "OWN.item.weapon.category.option.RangedEnergy": "Ranged: Energy",
+  "OWN.item.weapon.category.option.RangedHeavy": "Ranged: Heavy",
+  "OWN.item.weapon.category.option.RangedOther": "Ranged: Other",
+  "OWN.item.weapon.category.option.RangedThrown": "Grenades & Explosives"
+}

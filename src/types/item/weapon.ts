@@ -1,32 +1,11 @@
-enum WeaponCategory {
-  MeleeSimple = "MeleeSimple",
-  MeleeArchaic = "MeleeArchaic",
-  MeleeExotic = "MeleeExotic",
-  RangedProjectile = "RangedProjectile",
-  RangedEnergy = "RangedEnergy",
-  RangedHeavy = "RangedHeavy",
-  RangedOther = "RangedOther",
-}
+import { WeaponCategory } from "../../constants";
+import { CharacterAbility } from "../character";
 
 enum DamageEffectType {
   Bludgeoning = "Bludgeoning",
   Chemical = "Chemical",
   Piercing = "Piercing",
   Slashing = "Slashing",
-}
-
-/**
- * See Page 108.
- */
-enum CharacterAbility {
-  Strength = "STR",
-  Stamina = "STA",
-  Agility = "AGL",
-  Dexterity = "DEX",
-  Fighting = "FGT",
-  Intellect = "INT",
-  Awareness = "AWE",
-  Presence = "PRE",
 }
 
 enum AdvantageCategory {
@@ -66,6 +45,10 @@ interface CombatAdvantageShape {
   };
 }
 
+interface ItemAttributes {
+  cost: number;
+}
+
 interface WeaponAttributes {
   advantages: Record<string, CombatAdvantageShape>;
   /**
@@ -74,10 +57,6 @@ interface WeaponAttributes {
    * See Page 217.
    */
   category: WeaponCategory;
-  /**
-   * Item sheet related CSS class assignment
-   */
-  classes: Record<string, string>;
   /**
    * The threat range for a critical hit with the weapon.
    * Some weapons have a larger threat range than others.
@@ -95,7 +74,7 @@ interface WeaponAttributes {
    * this type as part of their regular equipment.
    * See Page 217.
    */
-  cost: number;
+  cost: ItemAttributes["cost"];
   /**
    * The effect a hit with the weapon causes, typically
    * Damage, although some modern melee weapons have
@@ -106,7 +85,28 @@ interface WeaponAttributes {
    * See Page 217.
    */
   effect: Record<string, DamageEffectShape>;
+  /**
+   * Each time you apply this modifier to a close range effect,
+   * you extend its reach by 5 feet. This may represent a shortranged
+   * effect or one with a somewhat greater reach, like a
+   * whip, spear, or similar weapon.
+   * See Page 195.
+   */
   reach: number;
+  /**
+   * Rich text description for the item
+   */
+  description: string;
+  sheet: {
+    /**
+     * The last selected sub tab open within the Weapon Sheet
+     */
+    selectedTab: string;
+  };
+  source: {
+    link: string;
+    text: string;
+  };
 }
 
-// export type { WeaponAttributes };
+export {};
