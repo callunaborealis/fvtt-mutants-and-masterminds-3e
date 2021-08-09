@@ -4,30 +4,26 @@
     "types": ["weapon"],
     "templates": {
       "item": {
-        "cost": 1
+        "cost": 0
       }
     },
     "weapon": {
       "templates": ["item"],
-      "type": "weapon",
       "advantages": [],
-      "category": "SimpleArchaic",
-      "classes": {},
+      "category": "MeleeSimple",
       "critical": {
         "min": 0,
         "max": 0
       },
-      "effect": [
-        {
-          "category": "Damage",
-          "attributes": {
-            "abilityUsed": "Str",
-            "type": "Bludgeoning",
-            "value": 1
-          }
-        }
-      ],
-      "reach": 1
+      "description": "",
+      "reach": 1,
+      "source": {
+        "text": "",
+        "link": ""
+      },
+      "sheet": {
+        "selectedTab": "description"
+      }
     }
   }
 }

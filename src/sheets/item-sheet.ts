@@ -2,6 +2,12 @@ import { templateDirectory } from "../helpers/templates";
 
 import styles from "../styles/templates/item/weapon.scss";
 
+interface DataShape {
+  classes: typeof styles;
+}
+
+type ItemSheetTab = "description" | "details" | "effects";
+
 /**
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
@@ -23,14 +29,21 @@ export class OwnItemSheet extends ItemSheet {
         data: {
           ...data.data.data,
           classes: {
-            header: styles["item-sheet__header"],
-            headerTop: styles["item-sheet__header-top"],
-            attributes: styles["item-sheet__attributes"],
+            attributes: styles["attributes"],
+            attributesSourceLink: styles["attributes__source__link"],
+            attributesSourceText: styles["attributes__source__text"],
+            description: styles["description"],
+            detailsForm: styles["details-form"],
+            detailsFormLabel: styles["details-form__label"],
+            detailsFormRangeField: styles["details-form__range-field"],
+            detailsFormNumField: styles["details-form__num-field"],
+            header: styles["header"],
+            headerTop: styles["header-top"],
             tabs: styles["item-sheet__tabs"],
             tab: styles["item-sheet__tab"],
-            tabContent: styles["item-sheet__tab-content"],
+            tabContent: styles["tab-content"],
           },
-        },
+        } as DataShape,
       },
     };
     return ownData;
@@ -49,31 +62,30 @@ export class OwnItemSheet extends ItemSheet {
   activateListeners(html: JQuery) {
     super.activateListeners(html);
 
-    type ItemSheetTab = HTMLElement & {
-      dataset: {
+    type ItemSheetTabEl = HTMLElement & {
+      readonly dataset: DOMStringMap & {
         selected: "true" | "false";
-        tab: "description" | "details" | "effects";
+        tab: ItemSheetTab;
       };
     };
 
-    const tabs = html[0].querySelectorAll<ItemSheetTab>(
+    const tabs = html[0].querySelectorAll<ItemSheetTabEl>(
       `.${styles["item-sheet__tab"]}[data-tab][data-selected]`,
     );
 
     // Set up tab toggling
     tabs.forEach((tab) => {
       tab.addEventListener("click", (e) => {
-        const tabType = (e.target as ItemSheetTab).dataset.tab;
-        const toggleableAreas = html[0].querySelectorAll<ItemSheetTab>(
-          `.${styles["item-sheet__tab-content"]}[data-tab][data-selected]`,
+        const tabType = (e.target as ItemSheetTabEl).dataset.tab;
+        const toggleableAreas = html[0].querySelectorAll<ItemSheetTabEl>(
+          `.${styles["tab-content"]}[data-tab][data-selected]`,
         );
         toggleableAreas.forEach((toggleableArea) => {
-          toggleableArea.dataset.selected =
-            toggleableArea.dataset.tab === tabType ? "true" : "false";
-        });
-        // Switch active tab presentation
-        tabs.forEach((tab) => {
-          tab.dataset.selected = tab.dataset.tab === tabType ? "true" : "false";
+          if (toggleableArea.dataset.tab === tabType) {
+            this.item.update({
+              "data.sheet.selectedTab": toggleableArea.dataset.tab,
+            });
+          }
         });
       });
     });

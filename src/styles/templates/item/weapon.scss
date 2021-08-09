@@ -1,5 +1,3 @@
-@import "../../system.scss";
-
 .item-sheet {
   background-color: rgb(232, 236, 235);
   min-height: 400px;
@@ -9,6 +7,7 @@
   /* Variables */
   --white: rgb(251, 251, 251);
   --dark-green: rgb(159, 178, 169);
+  --dark-green-40pct: rgba(159, 178, 169, 0.4);
   --darker-green: rgb(72, 104, 88);
   --light-green: rgb(235, 240, 238);
 }
@@ -40,25 +39,59 @@
   background-color: var(--light-green);
 }
 
-.item-sheet__header {
+.header {
   padding: 10px;
 }
 
-.item-sheet__header-top {
+.header-top {
   align-items: center;
   border-radius: 5px;
   display: flex;
-  font-family: "Teko";
+  font-family: "NewsflashBB";
   width: 100%;
 }
 
-.item-sheet__header-top h1 {
+.header-top h1 {
   border-bottom: none;
   margin-left: 10px;
 }
 
-.item-sheet table.item-sheet__attributes {
-  width: 200px;
+.header-top h1 input {
+  background: none;
+  border: 1px solid transparent;
+  display: block;
+  height: 40px;
+  line-height: 24px;
+}
+
+.item-sheet table.attributes {
+  min-width: 200px;
+}
+
+.attributes__source__text,
+.attributes__source__link {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.attributes__source__text input,
+.attributes__source__link input {
+  background: none;
+  border: 1px solid transparent;
+  font-size: 14px;
+  height: 18px;
+}
+
+.attributes__source__text input::placeholder,
+.attributes__source__link input::placeholder {
+  color: lightgrey;
+}
+
+.attributes__source__link input {
+  font-size: 12px;
+  height: 15px;
+  text-overflow: ellipsis;
 }
 
 .item-sheet__tabs {
@@ -83,23 +116,52 @@
 }
 
 .item-sheet__tab[data-selected="false"] {
-  background: rgba(159, 178, 169, 0.4);
-  border-bottom: solid 2px rgb(159, 178, 169);
+  border-bottom: solid 2px var(--dark-green-40pct);
   max-width: calc(100% / 3);
 }
 
 .item-sheet__tab[data-selected="true"] {
-  background: transparent;
-  border-top: solid 2px rgb(159, 178, 169);
-  border-left: solid 2px rgb(159, 178, 169);
-  border-right: solid 2px rgb(159, 178, 169);
+  background: var(--dark-green-40pct);
   font-weight: 700;
 }
 
-.item-sheet__tab-content {
+.tab-content {
   padding: 10px;
 }
 
-.item-sheet__tab-content[data-selected="false"] {
+.tab-content[data-selected="false"] {
   display: none;
+}
+
+.description {
+  background: var(--white);
+  width: 100%;
+}
+
+.description :global {
+  .editor {
+    // Need to define height in terms of px in order to show.
+    // Valued min-height does not work.
+    height: 200px;
+  }
+}
+
+.tab-content[data-tab="effects"] table {
+  width: 100%;
+}
+
+.details-form__label {
+  min-width: 35%;
+}
+
+.details-form__range-field {
+  display: inline;
+}
+
+.details-form__range-field input {
+  width: 100px;
+}
+
+.details-form__num-field input {
+  width: 100px;
 }

@@ -1,6 +1,6 @@
 import { get } from "lodash-es";
 
-import { REPO_NAME } from "../constants";
+import constants, { REPO_NAME } from "../constants";
 
 const templateDirectory = {
   item: {
@@ -21,6 +21,7 @@ const preloadHandlebarsTemplates = async (): Promise<
   ]);
 };
 
+type HandlebarsNativeHelperName = "lookup";
 type HandlebarsFoundryHelperName =
   | "checked"
   | "colorPicker"
@@ -42,22 +43,41 @@ type HandlebarsFoundryHelperName =
   | "and"
   | "or";
 
-type HandlebarsOwnHelperName = "lodash.get";
+/**
+ * Format for helper names
+ * `{external module package name}_{helper name in camel case}`
+ */
+type HandlebarsOwnHelperName = "lodash_get" | "own_getConst" | "own_replace";
 
 const handlebarsHelperArgs: {
-  name: Exclude<HandlebarsOwnHelperName, HandlebarsFoundryHelperName>;
+  name: Exclude<
+    HandlebarsOwnHelperName,
+    HandlebarsFoundryHelperName | HandlebarsNativeHelperName
+  >;
   fn: Handlebars.HelperDelegate;
 }[] = [
   {
-    name: "lodash.get",
+    name: "lodash_get",
     fn: (
       dotSeparatedPath: string,
-      options?: { data?: { root?: ItemSheet.Data<DocumentSheet.Options> } },
+      options?: { data?: { root?: ItemSheet.Data<ItemSheet.Options> } },
     ) => {
       const templateData = options?.data?.root ?? {};
       return get(templateData, dotSeparatedPath);
     },
   },
+  {
+    name: "own_getConst",
+    fn: (dotSeparatedPath: string) => {
+      return get(constants, dotSeparatedPath);
+    },
+  },
+  {
+    name: "own_replace",
+    fn: (candidate: string, searchValue: string, replaceValue: string) => {
+      return candidate.replace(searchValue, replaceValue);
+    },
+  },
 ];
 
-export { handlebarsHelperArgs, preloadHandlebarsTemplates };
+export { handlebarsHelperArgs, preloadHandlebarsTemplates, templateDirectory };
