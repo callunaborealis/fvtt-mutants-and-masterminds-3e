@@ -1,6 +1,6 @@
 import { get } from "lodash-es";
 
-import constants, { REPO_NAME } from "../constants";
+import { OWN_CONFIG, REPO_NAME } from "./config";
 
 const templateDirectory = {
   item: {
