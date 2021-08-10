@@ -8,42 +8,46 @@ interface DataShape {
 
 type ItemSheetTab = "description" | "details" | "effects";
 
+type OwnItemSheetData = ItemSheet.Data<ItemSheet.Options> & {
+  data: DataShape;
+};
+
 /**
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
  */
-export class OwnItemSheet extends ItemSheet {
+export class OwnItemSheet extends ItemSheet<
+  ItemSheet.Options,
+  OwnItemSheetData
+> {
   get template() {
     return templateDirectory.item.weapon;
   }
 
   /** @override */
   getData() {
-    const data = super.getData() as ItemSheet.Data<ItemSheet.Options>;
-    const ownData = {
+    const data = super.getData() as OwnItemSheetData;
+    const ownData: OwnItemSheetData = {
       ...data,
       cssClass: styles["item-sheet"],
       editable: true,
       data: {
         ...data.data,
-        data: {
-          ...data.data.data,
-          classes: {
-            attributes: styles["attributes"],
-            attributesSourceLink: styles["attributes__source__link"],
-            attributesSourceText: styles["attributes__source__text"],
-            description: styles["description"],
-            detailsForm: styles["details-form"],
-            detailsFormLabel: styles["details-form__label"],
-            detailsFormRangeField: styles["details-form__range-field"],
-            detailsFormNumField: styles["details-form__num-field"],
-            header: styles["header"],
-            headerTop: styles["header-top"],
-            tabs: styles["item-sheet__tabs"],
-            tab: styles["item-sheet__tab"],
-            tabContent: styles["tab-content"],
-          },
-        } as DataShape,
+        classes: {
+          attributes: styles["attributes"],
+          attributesSourceLink: styles["attributes__source__link"],
+          attributesSourceText: styles["attributes__source__text"],
+          description: styles["description"],
+          detailsForm: styles["details-form"],
+          detailsFormLabel: styles["details-form__label"],
+          detailsFormRangeField: styles["details-form__range-field"],
+          detailsFormNumField: styles["details-form__num-field"],
+          header: styles["header"],
+          headerTop: styles["header-top"],
+          tabs: styles["item-sheet__tabs"],
+          tab: styles["item-sheet__tab"],
+          tabContent: styles["tab-content"],
+        },
       },
     };
     return ownData;
