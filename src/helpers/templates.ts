@@ -47,7 +47,7 @@ type HandlebarsFoundryHelperName =
  * Format for helper names
  * `{external module package name}_{helper name in camel case}`
  */
-type HandlebarsOwnHelperName = "lodash_get" | "own_getConst" | "own_replace";
+type HandlebarsOwnHelperName = "lodash_get" | "own_getConfig" | "own_replace";
 
 const handlebarsHelperArgs: {
   name: Exclude<
@@ -67,9 +67,9 @@ const handlebarsHelperArgs: {
     },
   },
   {
-    name: "own_getConst",
+    name: "own_getConfig",
     fn: (dotSeparatedPath: string) => {
-      return get(constants, dotSeparatedPath);
+      return get(OWN_CONFIG, dotSeparatedPath);
     },
   },
   {

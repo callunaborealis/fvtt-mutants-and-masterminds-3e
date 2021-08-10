@@ -138,13 +138,13 @@
             <select name="data.category">
               {{#select (lodash_get "item.data.data.category")}}
                 {{#each
-                  (own_getConst
+                  (own_getConfig
                     "item.weapon.category.list"
                   ) as |category position|
                 }}
                   <option value="{{category}}">
                     {{localize
-                      (own_getConst
+                      (own_getConfig
                         (own_replace
                           "item.weapon.category.indexedLabels.{category}"
                           "{category}"
