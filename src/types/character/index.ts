@@ -1,7 +1,7 @@
 /**
  * See Page 108.
  */
-enum CharacterAbility {
+export enum CharacterAbility {
   Strength = "STR",
   Stamina = "STA",
   Agility = "AGL",
@@ -11,5 +11,3 @@ enum CharacterAbility {
   Awareness = "AWE",
   Presence = "PRE",
 }
-
-export { CharacterAbility };

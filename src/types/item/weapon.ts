@@ -1,4 +1,4 @@
-import { WeaponCategory } from "../../constants";
+import { WeaponCategory } from "../../helpers/config";
 import { CharacterAbility } from "../character";
 
 enum DamageEffectType {
@@ -108,5 +108,3 @@ interface WeaponAttributes {
     text: string;
   };
 }
-
-export {};

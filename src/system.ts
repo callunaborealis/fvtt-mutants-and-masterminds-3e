@@ -11,16 +11,10 @@ import {
   preloadHandlebarsTemplates,
 } from "./helpers/templates";
 
-class OwnGame extends Game {
-  own: {
-    OwnActor: typeof OwnActor;
-    OwnItem: typeof OwnItem;
-  };
-}
+import type { OwnCONFIG, OwnGame } from "./types";
 
-interface OwnCONFIG extends CONFIG {
-  OWN: typeof OWN_CONFIG;
-}
+declare var game: OwnGame;
+declare var CONFIG: OwnCONFIG;
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -36,7 +30,7 @@ Hooks.once("init", function () {
    * defined in our ES modules. These are useful for things like debugging in
    * your browser's console or letting modules interact with your system's classes.
    */
-  (game as OwnGame).own = {
+  game.own = {
     OwnActor,
     OwnItem,
   };
@@ -48,20 +42,20 @@ Hooks.once("init", function () {
    * If you define constants for your system, such as in a config.js ES module,
    * you can add them to the global CONFIG object like in this example.
    */
-  (CONFIG as OwnCONFIG).OWN = OWN_CONFIG;
+  CONFIG.OWN = OWN_CONFIG;
 
   /**
    * Set an initiative formula for the system
    * @type {String}
    */
-  (CONFIG as OwnCONFIG).Combat.initiative = {
+  CONFIG.Combat.initiative = {
     formula: "1d20 + @abilities.dex.mod",
     decimals: 2,
   };
 
   // Define custom Document classes
-  (CONFIG as OwnCONFIG).Actor.documentClass = OwnActor;
-  (CONFIG as OwnCONFIG).Item.documentClass = OwnItem;
+  CONFIG.Actor.documentClass = OwnActor;
+  CONFIG.Item.documentClass = OwnItem;
 
   // Register sheet application classes
   /**
@@ -70,10 +64,10 @@ Hooks.once("init", function () {
    * sheet classes. You can register as many sheets as you like, and modules
    * can also register their own sheets.
    */
-  // Actors.unregisterSheet("core", ActorSheet);
-  // Actors.registerSheet("own", OwnActorSheet, {
-  //   makeDefault: true,
-  // });
+  Actors.unregisterSheet("core", ActorSheet);
+  Actors.registerSheet("own", OwnActorSheet, {
+    makeDefault: true,
+  });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("own", OwnItemSheet, {
     makeDefault: true,

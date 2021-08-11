@@ -1,4 +1,6 @@
-enum WeaponCategory {
+import { CharacterAbility } from "../types/character";
+
+export enum WeaponCategory {
   MeleeSimple = "MeleeSimple",
   MeleeArchaic = "MeleeArchaic",
   MeleeExotic = "MeleeExotic",
@@ -9,7 +11,8 @@ enum WeaponCategory {
   RangedThrown = "RangedThrown",
 }
 
-interface OwnConfig {
+export interface OwnConfig {
+  abilities: Record<CharacterAbility, string>;
   actor: {};
   item: {
     weapon: {
@@ -21,7 +24,10 @@ interface OwnConfig {
   };
 }
 
-const OWN_CONFIG: Readonly<OwnConfig> = Object.freeze({
+export const OWN_CONFIG: Readonly<OwnConfig> = Object.freeze({
+  abilities: Object.keys(CharacterAbility).reduce((acc, key) => {
+    return { ...acc, [key]: CharacterAbility[key] };
+  }, {} as OwnConfig["abilities"]),
   actor: {},
   item: {
     weapon: {
@@ -35,6 +41,4 @@ const OWN_CONFIG: Readonly<OwnConfig> = Object.freeze({
   },
 });
 
-const REPO_NAME = "fvtt-mutants-and-masterminds-3e";
-
-export { OWN_CONFIG, REPO_NAME };
+export const REPO_NAME = "fvtt-mutants-and-masterminds-3e";

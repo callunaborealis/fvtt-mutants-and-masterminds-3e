@@ -3,6 +3,10 @@ import { get } from "lodash-es";
 import { OWN_CONFIG, REPO_NAME } from "./config";
 
 const templateDirectory = {
+  actor: {
+    character: `systems/${REPO_NAME}/templates/actor/character.html`,
+    npc: `systems/${REPO_NAME}/templates/actor/npc.html`,
+  },
   item: {
     weapon: `systems/${REPO_NAME}/templates/item/weapon.html`,
   },
@@ -16,6 +20,8 @@ const preloadHandlebarsTemplates = async (): Promise<
   Handlebars.TemplateDelegate<any>[]
 > => {
   return loadTemplates([
+    // Actor Sheet Partials
+    ...Object.values(templateDirectory.actor),
     // Item Sheet Partials
     ...Object.values(templateDirectory.item),
   ]);

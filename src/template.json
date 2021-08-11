@@ -1,5 +1,44 @@
 {
-  "Actor": {},
+  "Actor": {
+    "type": ["character", "npc"],
+    "templates": {
+      "base": {
+        "abilities": {
+          "Strength": 0,
+          "Stamina": 0,
+          "Agility": 0,
+          "Dexterity": 0,
+          "Fighting": 0,
+          "Intellect": 0,
+          "Awareness": 0,
+          "Presence": 0
+        },
+        "health": {
+          "value": 10,
+          "min": 0,
+          "max": 10
+        },
+        "power": {
+          "value": 5,
+          "min": 0,
+          "max": 5
+        },
+        "biography": ""
+      }
+    },
+    "character": {
+      "templates": ["base"],
+      "attributes": {
+        "level": {
+          "value": 1
+        }
+      }
+    },
+    "npc": {
+      "templates": ["base"],
+      "cr": 0
+    }
+  },
   "Item": {
     "types": ["weapon"],
     "templates": {

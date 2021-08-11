@@ -2,14 +2,14 @@ import { templateDirectory } from "../helpers/templates";
 
 import styles from "../styles/templates/item/weapon.scss";
 
-interface DataShape {
-  classes: typeof styles;
+interface ItemSheetOwnAddData {
+  classes: Record<string, string>;
 }
 
 type ItemSheetTab = "description" | "details" | "effects";
 
 type OwnItemSheetData = ItemSheet.Data<ItemSheet.Options> & {
-  data: DataShape;
+  data: ItemSheet.Data<ItemSheet.Options>["data"] & ItemSheetOwnAddData;
 };
 
 /**
