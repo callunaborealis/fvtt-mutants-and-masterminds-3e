@@ -1,10 +1,10 @@
 <form
   class="{{cssClass}}"
   autocomplete="off"
-  data-item-type="{{item.type}}"
+  data-item-type="weapon"
 >
-  <header class="{{lodash_get "data.classes.header"}}">
-    <div class="{{lodash_get "data.classes.headerTop"}}">
+  <header class="{{classes.header}}">
+    <div class="{{classes.headerTop}}">
       <img
         src="{{item.img}}"
         data-edit="img"
@@ -21,7 +21,7 @@
         />
       </h1>
     </div>
-    <table class="{{lodash_get "data.classes.attributes"}}">
+    <table class="{{classes.attributes}}">
       <tbody>
         <tr>
           <td>
@@ -29,26 +29,26 @@
           </td>
           <td>
             <div
-              class="{{lodash_get "data.classes.attributesSourceText"}}"
+              class="{{classes.attributesSourceText}}"
             >
               <input
                 name="data.source.text"
                 type="text"
                 placeholder="Name of source (Optional)"
-                value="{{lodash_get "item.data.data.source.text"}}"
+                value="{{data.source.text}}"
               />
             </div>
             <div
-              class="{{lodash_get "data.classes.attributesSourceLink"}}"
+              class="{{classes.attributesSourceLink}}"
             >
               <input
                 name="data.source.link"
                 type="text"
                 placeholder="Link to source (Optional)"
-                value="{{lodash_get "item.data.data.source.link"}}"
+                value="{{data.source.link}}"
               />
               <a
-                href="{{lodash_get "item.data.data.source.link"}}"
+                href="{{data.source.link}}"
                 rel="noreferrer noopener"
                 target="_blank"
               >
@@ -63,80 +63,67 @@
   <input
     type="hidden"
     name="data.sheet.selectedTab"
-    value="{{lodash_get "item.data.data.sheet.selectedTab"}}"
+    value="{{data.sheet.selectedTab}}"
   />
-  <nav class="{{lodash_get "data.classes.tabs"}}">
+  <nav class="{{classes.tabs}}">
     <a
-      class="{{lodash_get "data.classes.tab"}}"
+      class="{{classes.tab}}"
       data-tab="description"
       data-selected={{eq
-        (lodash_get "item.data.data.sheet.selectedTab")
+        data.sheet.selectedTab
         "description"
       }}
     >
       Description
     </a>
     <a
-      class="{{lodash_get "data.classes.tab"}}"
+      class="{{classes.tab}}"
       data-tab="details"
-      data-selected="{{eq
-          (lodash_get "item.data.data.sheet.selectedTab")
-          "details"
-        }}"
+      data-selected="{{eq data.sheet.selectedTab "details"}}"
     >
       Details
     </a>
     <a
-      class="{{lodash_get "data.classes.tab"}}"
+      class="{{classes.tab}}"
       data-tab="effects"
-      data-selected="{{eq
-          (lodash_get "item.data.data.sheet.selectedTab")
-          "effects"
-        }}"
+      data-selected="{{eq data.sheet.selectedTab "effects"}}"
     >
       Effects
     </a>
   </nav>
   <div
-    class="{{lodash_get "data.classes.tabContent"}}"
+    class="{{classes.tabContent}}"
     data-tab="description"
-    data-selected="{{eq
-      (lodash_get "item.data.data.sheet.selectedTab")
-      "description"
-    }}"
+    data-selected="{{eq data.sheet.selectedTab "description"}}"
   >
-    <div class="{{lodash_get "data.classes.description"}}">
+    <div class="{{classes.description}}">
       {{editor
-        content=(lodash_get "item.data.data.description")
+        content=data.description
         target="data.description"
         button=true
         owner=owner
         editable=editable
-        rollData=rollData
       }}
     </div>
   </div>
   <div
-    class="{{lodash_get "data.classes.tabContent"}}"
+    class="{{classes.tabContent}}"
     data-tab="details"
-    data-selected="{{eq
-      (lodash_get "item.data.data.sheet.selectedTab")
-      "details"
-    }}"
+    data-selected="{{eq data.sheet.selectedTab "details"}}"
   >
-    <table class="{{lodash_get "data.classes.detailsForm"}}">
+    <table class="{{classes.detailsForm}}">
       <tbody>
         <tr>
-          <td class="{{lodash_get "data.classes.detailsFormLabel"}}">
+          <td class="{{classes.detailsFormLabel}}">
             {{localize "OWN.item.weapon.category.label"}}
           </td>
           <td>
             <input
               type="hidden"
-              value="{{lodash_get "item.data.data.category"}}"
+              value="{{data.category}}"
             />
             <select name="data.category">
-              {{#select (lodash_get "item.data.data.category")}}
+              {{#select data.category}}
                 {{#each
                   (own_getConfig
                     "item.weapon.category.list"
@@ -159,53 +146,53 @@
           </td>
         </tr>
         <tr>
-          <td class="{{lodash_get "data.classes.detailsFormLabel"}}">
+          <td class="{{classes.detailsFormLabel}}">
             Critical
           </td>
           <td>
             <div
-              class="{{lodash_get "data.classes.detailsFormRangeField"}}"
+              class="{{classes.detailsFormRangeField}}"
             >
               <input
                 name="data.critical.min"
                 type="number"
-                value="{{lodash_get "item.data.data.critical.min"}}"
+                value="{{data.critical.min}}"
                 placeholder="Min"
               />
               <input
                 name="data.critical.max"
                 type="number"
-                value="{{lodash_get "item.data.data.critical.max"}}"
+                value="{{data.critical.max}}"
                 placeholder="Max"
               />
             </div>
           </td>
         </tr>
         <tr>
-          <td class="{{lodash_get "data.classes.detailsFormLabel"}}">
+          <td class="{{classes.detailsFormLabel}}">
             Cost
           </td>
           <td>
-            <div class="{{lodash_get "data.classes.detailsFormNumField"}}">
+            <div class="{{classes.detailsFormNumField}}">
               <input
                 name="data.cost"
                 type="number"
-                value="{{lodash_get "item.data.data.cost"}}"
+                value="{{data.cost}}"
                 placeholder="Cost"
               />
             </div>
           </td>
         </tr>
         <tr>
-          <td class="{{lodash_get "data.classes.detailsFormLabel"}}">
+          <td class="{{classes.detailsFormLabel}}">
             Reach
           </td>
           <td>
-            <div class="{{lodash_get "data.classes.detailsFormNumField"}}">
+            <div class="{{classes.detailsFormNumField}}">
               <input
                 name="data.reach"
                 type="number"
-                value="{{lodash_get "item.data.data.reach"}}"
+                value="{{data.reach}}"
                 placeholder="Reach"
               />
             </div>
@@ -215,12 +202,9 @@
     </table>
   </div>
   <div
-    class="{{lodash_get "data.classes.tabContent"}}"
+    class="{{classes.tabContent}}"
     data-tab="effects"
-    data-selected="{{eq
-        (lodash_get "item.data.data.sheet.selectedTab")
-        "effects"
-      }}"
+    data-selected="{{eq data.sheet.selectedTab "effects"}}"
   >
     <table>
       <thead>

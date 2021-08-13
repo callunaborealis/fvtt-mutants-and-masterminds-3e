@@ -49,7 +49,7 @@ interface ItemAttributes {
   cost: number;
 }
 
-interface WeaponAttributes {
+export interface WeaponAttributes {
   advantages: Record<string, CombatAdvantageShape>;
   /**
    * Melee weapons are categorized as simple, archaic,
