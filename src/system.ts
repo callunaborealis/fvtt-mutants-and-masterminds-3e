@@ -49,6 +49,12 @@ Hooks.once("init", function () {
    * @type {String}
    */
   CONFIG.Combat.initiative = {
+    /*
+     * Each character involved in a conflict makes a check of d20 + initiative modifier, which
+     * is:
+     * Initiative Modifier = Agility + Advantages + (Improved Initiative) + Power Modifiers
+     * See Page 111.
+     */
     formula: "1d20 + @abilities.dex.mod",
     decimals: 2,
   };
