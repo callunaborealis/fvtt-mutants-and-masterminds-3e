@@ -45,7 +45,7 @@ jobs:
           pnpm run build
           version="v0.0.0"
           manifest_url="https://github.com/callunaborealis/fvtt-mutants-and-masterminds-3e/releases/$version/download/system.json"
-          gh release upload $version ../dist/system.json ../dist/system.zip --clobber
+          gh release upload $version dist/system.json dist/system.zip --clobber
 
   versioned-release:
     runs-on: ubuntu-latest
@@ -85,4 +85,4 @@ jobs:
           # refs/tags/v**.**.** -> v**.**.**
           version=${GITHUB_REF##*/}
           manifest_url="https://github.com/callunaborealis/fvtt-mutants-and-masterminds-3e/releases/$version/download/system.json"
-          gh release create $version ../dist/system.json ../dist/system.zip --notes "Link to manifest URL: $manifest_url"
+          gh release create $version dist/system.json dist/system.zip --notes "Link to manifest URL: $manifest_url"
