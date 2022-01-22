@@ -41,6 +41,8 @@ jobs:
 
       - name: Compiles source code into the essential Foundry VTT release files
         run: |
+          cd build && ls -l && cd .. # Need to see if build/system.css exists
+          cd build/styles && ls -l && cd ../.. # Need to see if build/styles/system.css exists
           rm -rf dist
           mkdir build dist
           # Ensure system.json is inside dist for release
