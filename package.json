@@ -4,6 +4,7 @@
   "description": "Unofficial Foundry VTTRPG game system for Mutants and Masterminds (3e)",
   "main": "src/system.ts",
   "scripts": {
+    "build": "pnpm run build:local",
     "build:local": "rm -rf build && rollup -c && sh scripts/dist.sh",
     "build:remote": "rm -rf build && rollup -c && sh scripts/dist-remote.sh",
     "release": "sh scripts/release.sh",
