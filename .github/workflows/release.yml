@@ -42,7 +42,7 @@ jobs:
       - name: Compiles source code into the essential Foundry VTT release files
         run: |
           rm -rf dist
-          mkdir build build/styles dist
+          mkdir build dist
           # Ensure system.json is inside dist for release
           cp src/system.json build/system.json
           cp src/system.json dist/system.json
@@ -51,6 +51,7 @@ jobs:
           # Ensure non TS and SCSS files inside the build
           cp -vr src/assets build/assets
           cp -vr src/lang build/lang
+          mkdir build/styles
           mv build/system.css build/styles/system.css
           cp -vr src/templates build/templates
           cd build
@@ -96,7 +97,7 @@ jobs:
       - name: Compiles source code into the essential Foundry VTT release files
         run: |
           rm -rf dist
-          mkdir build build/styles dist
+          mkdir build dist
           # Ensure system.json is inside dist for release
           cp src/system.json build/system.json
           cp src/system.json dist/system.json
@@ -105,6 +106,7 @@ jobs:
           # Ensure non TS and SCSS files inside the build
           cp -vr src/assets build/assets
           cp -vr src/lang build/lang
+          mkdir build/styles
           mv build/system.css build/styles/system.css
           cp -vr src/templates build/templates
           cd build

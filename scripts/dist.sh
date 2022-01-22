@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-script_dir="echo $(cd -- "$(dirname "$0")" >/dev/null 2>&1 && pwd -P)"
+script_dir="$(cd -- "$(dirname "$0")" >/dev/null 2>&1 && pwd -P)"
 
 rm -rf $script_dir/../dist
 mkdir $script_dir/../dist
@@ -12,7 +12,7 @@ cp $script_dir/../src/template.json $script_dir/../build/template.json
 # Ensure non TS and SCSS files inside the build
 cp -vr $script_dir/../src/assets $script_dir/../build/assets
 cp -vr $script_dir/../src/lang $script_dir/../build/lang
-# mkdir $script_dir/../build/styles &&
+mkdir $script_dir/../build/styles
 mv $script_dir/../build/system.css $script_dir/../build/styles/system.css
 cp -vr $script_dir/../src/templates $script_dir/../build/templates
 cd $script_dir/../build
