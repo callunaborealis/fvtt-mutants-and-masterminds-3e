@@ -8,62 +8,47 @@ on:
       - v*.*.*
 
 jobs:
-  
   working-release:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
 
-    strategy:
-      matrix:
-        node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+      - uses: actions/checkout@v2
 
-    - name: Install dependencies
-      run: npm install
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
 
-    - name: Compiles source code into the essential Foundry VTT release files
-      run: |
-        rm -rf dist && mkdir dist
-        npm run build
-        version="v0.0.0"
-        manifest_url="https://github.com/callunaborealis/fvtt-mutants-and-masterminds-3e/releases/$version/download/system.json"
-        gh release upload $version ../dist/system.json ../dist/system.zip --clobber
-  
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Compiles source code into the essential Foundry VTT release files
+        run: |
+          rm -rf dist && mkdir dist
+          pnpm run build
+          version="v0.0.0"
+          manifest_url="https://github.com/callunaborealis/fvtt-mutants-and-masterminds-3e/releases/$version/download/system.json"
+          gh release upload $version ../dist/system.json ../dist/system.zip --clobber
+
   versioned-release:
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/v')
 
-    strategy:
-      matrix:
-        node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+      - uses: actions/checkout@v2
 
-    - name: Install dependencies
-      run: npm install
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
 
-    - name: Compiles source code into the essential Foundry VTT release files
-      run: |
-        rm -rf dist && mkdir dist
-        npm run build
-        # refs/tags/v**.**.** -> v**.**.**
-        version=${GITHUB_REF##*/}
-        manifest_url="https://github.com/callunaborealis/fvtt-mutants-and-masterminds-3e/releases/$version/download/system.json"
-        gh release create $version ../dist/system.json ../dist/system.zip --notes "Link to manifest URL: $manifest_url"
-        
+      - name: Install dependencies
+        run: pnpm install
 
+      - name: Compiles source code into the essential Foundry VTT release files
+        run: |
+          rm -rf dist && mkdir dist
+          pnpm run build
+          # refs/tags/v**.**.** -> v**.**.**
+          version=${GITHUB_REF##*/}
+          manifest_url="https://github.com/callunaborealis/fvtt-mutants-and-masterminds-3e/releases/$version/download/system.json"
+          gh release create $version ../dist/system.json ../dist/system.zip --notes "Link to manifest URL: $manifest_url"
