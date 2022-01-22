@@ -2,3 +2,4 @@ node_modules
 build
 dist
 *.scss.d.ts
+.pnpm-store
