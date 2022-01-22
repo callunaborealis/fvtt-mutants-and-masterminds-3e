@@ -1,4 +1,4 @@
-import { WeaponCategory } from "../../constants";
+import { WeaponCategory } from "../../helpers/config";
 import { CharacterAbility } from "../character";
 
 enum DamageEffectType {
@@ -49,7 +49,7 @@ interface ItemAttributes {
   cost: number;
 }
 
-interface WeaponAttributes {
+export interface WeaponAttributes {
   advantages: Record<string, CombatAdvantageShape>;
   /**
    * Melee weapons are categorized as simple, archaic,
@@ -108,5 +108,3 @@ interface WeaponAttributes {
     text: string;
   };
 }
-
-export {};

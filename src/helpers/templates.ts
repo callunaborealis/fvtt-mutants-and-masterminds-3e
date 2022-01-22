@@ -1,8 +1,12 @@
 import { get } from "lodash-es";
 
-import constants, { REPO_NAME } from "../constants";
+import { OWN_CONFIG, REPO_NAME } from "./config";
 
 const templateDirectory = {
+  actor: {
+    character: `systems/${REPO_NAME}/templates/actor/character.html`,
+    npc: `systems/${REPO_NAME}/templates/actor/npc.html`,
+  },
   item: {
     weapon: `systems/${REPO_NAME}/templates/item/weapon.html`,
   },
@@ -16,6 +20,8 @@ const preloadHandlebarsTemplates = async (): Promise<
   Handlebars.TemplateDelegate<any>[]
 > => {
   return loadTemplates([
+    // Actor Sheet Partials
+    ...Object.values(templateDirectory.actor),
     // Item Sheet Partials
     ...Object.values(templateDirectory.item),
   ]);
@@ -47,7 +53,7 @@ type HandlebarsFoundryHelperName =
  * Format for helper names
  * `{external module package name}_{helper name in camel case}`
  */
-type HandlebarsOwnHelperName = "lodash_get" | "own_getConst" | "own_replace";
+type HandlebarsOwnHelperName = "lodash_get" | "own_getConfig" | "own_replace";
 
 const handlebarsHelperArgs: {
   name: Exclude<
@@ -67,9 +73,9 @@ const handlebarsHelperArgs: {
     },
   },
   {
-    name: "own_getConst",
+    name: "own_getConfig",
     fn: (dotSeparatedPath: string) => {
-      return get(constants, dotSeparatedPath);
+      return get(OWN_CONFIG, dotSeparatedPath);
     },
   },
   {

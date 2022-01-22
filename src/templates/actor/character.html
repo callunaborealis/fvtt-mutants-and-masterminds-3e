@@ -1,0 +1,49 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+        {{!-- Header stuff goes here --}}
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
+        <div class="header-fields">
+            <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
+              <div class="resources grid grid-2col">
+                <div class="resource flex-group-center">
+                    <label for="data.health.value" class="resource-label">Health</label>
+                    <div class="resource-content flexrow flex-center flex-between">
+                    <input type="text" name="data.health.value" value="{{data.health.value}}" data-dtype="Number"/>
+                    <span> / </span>
+                    <input type="text" name="data.health.max" value="{{data.health.max}}" data-dtype="Number"/>
+                    </div>
+                </div>
+                <div class="resource flex-group-center">
+                    <label for="data.power.value" class="resource-label">Power</label>
+                    <div class="resource-content flexrow flex-center flex-between">
+                    <input type="text" name="data.power.value" value="{{data.power.value}}" data-dtype="Number"/>
+                    <span> / </span>
+                    <input type="text" name="data.power.max" value="{{data.power.max}}" data-dtype="Number"/>
+                    </div>
+                </div>
+            </div>
+            <div class="abilities grid grid-3col">
+                {{#each data.abilities as |ability key|}}
+                <div class="ability flexrow flex-group-center">
+                    <label for="data.abilities.{{key}}.value" class="resource-label">{{key}}</label>
+                    <input type="text" name="data.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>
+                    <span class="ability-mod">{{numberFormat ability.mod decimals=0 sign=true}}</span>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </header>
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="description">Description</a>
+        <a class="item" data-tab="items">Items</a>
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+        {{!-- Tab content goes here --}}
+    </section>
+</form>

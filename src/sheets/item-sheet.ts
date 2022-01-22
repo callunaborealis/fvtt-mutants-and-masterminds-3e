@@ -1,50 +1,53 @@
 import { templateDirectory } from "../helpers/templates";
 
+import type { WeaponAttributes } from "../types/item/weapon";
+
 import styles from "../styles/templates/item/weapon.scss";
 
-interface DataShape {
-  classes: typeof styles;
-}
-
 type ItemSheetTab = "description" | "details" | "effects";
+
+type OwnItemSheetData = ItemSheet.Data<ItemSheet.Options> & {
+  classes: Record<string, string>;
+  data: WeaponAttributes;
+  editable: boolean;
+  owner: ItemSheet.Data<ItemSheet.Options>["owner"];
+};
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
  */
-export class OwnItemSheet extends ItemSheet {
+export class OwnItemSheet extends ItemSheet<
+  ItemSheet.Options,
+  OwnItemSheetData
+> {
   get template() {
     return templateDirectory.item.weapon;
   }
 
   /** @override */
   getData() {
-    const data = super.getData() as ItemSheet.Data<ItemSheet.Options>;
-    const ownData = {
-      ...data,
-      cssClass: styles["item-sheet"],
-      editable: true,
-      data: {
-        ...data.data,
-        data: {
-          ...data.data.data,
-          classes: {
-            attributes: styles["attributes"],
-            attributesSourceLink: styles["attributes__source__link"],
-            attributesSourceText: styles["attributes__source__text"],
-            description: styles["description"],
-            detailsForm: styles["details-form"],
-            detailsFormLabel: styles["details-form__label"],
-            detailsFormRangeField: styles["details-form__range-field"],
-            detailsFormNumField: styles["details-form__num-field"],
-            header: styles["header"],
-            headerTop: styles["header-top"],
-            tabs: styles["item-sheet__tabs"],
-            tab: styles["item-sheet__tab"],
-            tabContent: styles["tab-content"],
-          },
-        } as DataShape,
+    const data = super.getData() as OwnItemSheetData;
+    const ownData: OwnItemSheetData | any = {
+      classes: {
+        attributes: styles["attributes"],
+        attributesSourceLink: styles["attributes__source__link"],
+        attributesSourceText: styles["attributes__source__text"],
+        description: styles["description"],
+        detailsForm: styles["details-form"],
+        detailsFormLabel: styles["details-form__label"],
+        detailsFormRangeField: styles["details-form__range-field"],
+        detailsFormNumField: styles["details-form__num-field"],
+        header: styles["header"],
+        headerTop: styles["header-top"],
+        tabs: styles["item-sheet__tabs"],
+        tab: styles["item-sheet__tab"],
+        tabContent: styles["tab-content"],
       },
+      cssClass: styles["item-sheet"],
+      data: data.data.data as WeaponAttributes,
+      editable: true,
+      item: data.item,
     };
     return ownData;
   }

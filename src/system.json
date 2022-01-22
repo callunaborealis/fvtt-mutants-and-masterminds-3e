@@ -7,7 +7,7 @@
   "minimumCoreVersion": "0.8.8",
   "compatibleCoreVersion": "0.8.8",
   "author": "callunaborealis",
-  "esmodules": ["scripts/system.js"],
+  "esmodules": ["system.js"],
   "styles": ["styles/system.css"],
   "packs": [
     {
