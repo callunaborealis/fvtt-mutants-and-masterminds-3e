@@ -48,7 +48,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           version="v0.0.0"
-          manifest_url="https://github.com/callunaborealis/fvtt-mutants-and-masterminds-3e/releases/$version/download/system.json"
           gh release upload $version dist/system.json dist/system.zip --clobber
 
   versioned-release:
@@ -92,5 +91,5 @@ jobs:
         run: |
           # refs/tags/v**.**.** -> v**.**.**
           version=${GITHUB_REF##*/}
-          manifest_url="https://github.com/callunaborealis/fvtt-mutants-and-masterminds-3e/releases/$version/download/system.json"
+          manifest_url="https://github.com/callunaborealis/fvtt-mutants-and-masterminds-3e/releases/download/$version/system.json"
           gh release create $version dist/system.json dist/system.zip --notes "Link to manifest URL: $manifest_url"
