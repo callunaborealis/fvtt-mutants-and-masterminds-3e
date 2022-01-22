@@ -44,6 +44,8 @@ jobs:
           pnpm run build:remote
 
       - name: Update compiled working assets into the v0.0.0 release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           version="v0.0.0"
           manifest_url="https://github.com/callunaborealis/fvtt-mutants-and-masterminds-3e/releases/$version/download/system.json"
@@ -85,6 +87,8 @@ jobs:
           pnpm run build:remote
 
       - name: Upload compiled assets as a versioned release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # refs/tags/v**.**.** -> v**.**.**
           version=${GITHUB_REF##*/}
