@@ -6,16 +6,20 @@ Currently not ready for use.
 
 Paste this link to the Manifest URL: <https://github.com/callunaborealis/fvtt-mutants-and-masterminds-3e/releases/latest/download/system.json>.
 
+
+## For devs
+
 ### Build process
 
 ```sh
+pnpm install
 # Compiles your source code into the essential release files (Game files `system.zip`, and Manifest file `system.json`).
-npm run build
+pnpm run build
 # Install GitHub CLI then log in
 # Add the release tag inside the script, then run the below
-npm run release
+pnpm run release
 # Update the release distribution for the same tag
-npm run update
+pnpm run update
 ```
 
 ```txt
