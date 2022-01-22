@@ -42,7 +42,7 @@ jobs:
       - name: Compiles source code into the essential Foundry VTT release files
         run: |
           rm -rf dist
-          mkdir dist
+          mkdir build build/styles dist
           # Ensure system.json is inside dist for release
           cp src/system.json build/system.json
           cp src/system.json dist/system.json
@@ -54,7 +54,7 @@ jobs:
           mv build/system.css build/styles/system.css
           cp -vr src/templates build/templates
           cd build
-          zip -vr dist/system.zip . -x ".DS_Store"
+          zip -vr ../dist/system.zip . -x ".DS_Store"
 
       - name: Update compiled working assets into the v0.0.0 release
         run: |
@@ -96,7 +96,7 @@ jobs:
       - name: Compiles source code into the essential Foundry VTT release files
         run: |
           rm -rf dist
-          mkdir dist
+          mkdir build build/styles dist
           # Ensure system.json is inside dist for release
           cp src/system.json build/system.json
           cp src/system.json dist/system.json
@@ -108,7 +108,7 @@ jobs:
           mv build/system.css build/styles/system.css
           cp -vr src/templates build/templates
           cd build
-          zip -vr dist/system.zip . -x ".DS_Store"
+          zip -vr ../dist/system.zip . -x ".DS_Store"
 
       - name: Upload compiled assets as a versioned release
         run: |
