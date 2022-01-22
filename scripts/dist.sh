@@ -1,4 +1,7 @@
-script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+#!/bin/bash -x
+
+. ./common.sh
+
 rm -rf $script_dir/../dist &&
   mkdir $script_dir/../dist &&
   # Ensure system.json is inside dist for release
