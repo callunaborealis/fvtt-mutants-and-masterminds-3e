@@ -41,8 +41,23 @@ jobs:
 
       - name: Compiles source code into the essential Foundry VTT release files
         run: |
-          rm -rf dist && mkdir dist
-          pnpm run build
+          rm -rf dist
+          mkdir dist
+          # Ensure system.json is inside dist for release
+          cp src/system.json build/system.json
+          cp src/system.json dist/system.json
+          # Ensure template.json is inside the system.zip source
+          cp src/template.json build/template.json
+          # Ensure non TS and SCSS files inside the build
+          cp -vr src/assets build/assets
+          cp -vr src/lang build/lang
+          mv build/system.css build/styles/system.css
+          cp -vr src/templates build/templates
+          cd build
+          zip -vr dist/system.zip . -x ".DS_Store"
+
+      - name: Update compiled working assets into the v0.0.0 release
+        run: |
           version="v0.0.0"
           manifest_url="https://github.com/callunaborealis/fvtt-mutants-and-masterminds-3e/releases/$version/download/system.json"
           gh release upload $version dist/system.json dist/system.zip --clobber
@@ -80,8 +95,23 @@ jobs:
 
       - name: Compiles source code into the essential Foundry VTT release files
         run: |
-          rm -rf dist && mkdir dist
-          pnpm run build
+          rm -rf dist
+          mkdir dist
+          # Ensure system.json is inside dist for release
+          cp src/system.json build/system.json
+          cp src/system.json dist/system.json
+          # Ensure template.json is inside the system.zip source
+          cp src/template.json build/template.json
+          # Ensure non TS and SCSS files inside the build
+          cp -vr src/assets build/assets
+          cp -vr src/lang build/lang
+          mv build/system.css build/styles/system.css
+          cp -vr src/templates build/templates
+          cd build
+          zip -vr dist/system.zip . -x ".DS_Store"
+
+      - name: Upload compiled assets as a versioned release
+        run: |
           # refs/tags/v**.**.** -> v**.**.**
           version=${GITHUB_REF##*/}
           manifest_url="https://github.com/callunaborealis/fvtt-mutants-and-masterminds-3e/releases/$version/download/system.json"
