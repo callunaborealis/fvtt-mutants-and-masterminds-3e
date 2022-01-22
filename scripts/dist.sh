@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-. ./common.sh
+source common.sh
 
 rm -rf $script_dir/../dist &&
   mkdir $script_dir/../dist &&
